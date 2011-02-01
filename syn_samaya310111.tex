@@ -1,0 +1,396 @@
+\documentclass{emulateapj}
+%\documentclass[12pt,preprint]{aastex}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{epsfig}
+%\documentclass{emulateapj}
+%\usepackage{epsfig,apjfonts}
+\bibliographystyle{apj}
+
+\usepackage{color}
+\newcommand{\samaya}[1]{\textcolor{blue}{\bf #1}}
+\newcommand{\daniel}[1]{\textcolor{green}{\bf #1}}
+\newcommand{\mycomment}[1]{\textcolor{red}{\bf[ #1]}}
+\newcommand{\scott}[1]{\textcolor{cyan}{#1}}
+
+%\usepackage{epsfig,apjfonts}
+
+\def\showprivate{
+   \global\long\def\private{
+       \typeout{**INCLUDING PRIVATE MATERIAL**}
+   }
+}
+
+\def\hideprivate{
+   \global\long\def\private##1{
+       %\typeout{**EXCLUDING PRIVATE MATERIAL**}
+       \iffalse ##1 \fi
+   }
+}
+
+\hideprivate    %% This is the default
+\shorttitle{Compact binary inspiral and short gamma-ray bursts}
+\shortauthors{Nissanke et al.}
+
+\begin{document}
+
+\title{ Sky localisation for inspiralling compact binaries using a
+  network of ground based gravitational wave interferometers}
+
+\author{Samaya Nissanke\altaffilmark{1,2,3} et al.}
+
+\altaffiltext{1}{Caltech, Theoretical Astrophysics, California Institute of Technology, Pasadena, California 91125}
+
+\altaffiltext{2}{JPL, 4800 Oak Grove Drive, Pasadena, California 91109}
+
+\altaffiltext{3}{CITA, University of Toronto, 60 St.~George St.,
+  Toronto, ON, M5S 3H8, Canada}
+
+\altaffiltext{4}{Theoretical Division, Los Alamos National Laboratory,
+  Los Alamos, NM 87545}
+
+\altaffiltext{5}{Department of Astronomy and Astrophysics, University
+  of Chicago, Chicago, IL 60637}
+
+\altaffiltext{6}{Dept.\ of Physics and MIT Kavli Institute, 77
+  Massachusetts Avenue, Cambridge, MA 02139}
+
+
+\begin{abstract}
+\samaya{Era of multimessenger or transpectral astronomy is nearing upon us. Advent of first kHZ GW detection with advanced LIGO. Most promising sources are inspiralling and merging compact binaries. Also happens to be the main progenitor model for short hard bursts (but not certain). GW measurements will allow us to discriminate between different central engine models, constrain beaming and provide sky localisation. Will be of immense use to EM community especially large-scale optical surveys with increasing sensitivity,
+rapid cadence, and sky-area coverage--all will lead to a revolution in
+the study of transient objects. GW events will either provide a
+trigger to GRB observatories or LSST like transient surveys, or at
+least provide an insight into the distribution of inspiralling NS/NS
+and NS/BHs. We study the impact that gravitational wave measurements of
+inspiralling compact binaris will have using different proposed GW detectors.}
+\end{abstract}
+
+\keywords{cosmology: distance scale---cosmology: theory---gamma rays:
+bursts---gravitational waves}
+
+\section{Introduction}
+
+\samaya{Maximise science potential from future GW detection. Must use
+  both GW and EM channels. Frutiful exchange between two communities
+  necessary. Earlier work (standard siren) considered how EM
+  counterparts will aid GW measurements and constrain cosmological
+  parameters. This work considers how solely using measurements from
+  GW channel will aid understanding and observation strategy of their
+  EM counterparts. In particular, sky localisation, central engine and
+  extent of collimation looking at the case where we know or do not
+  know about the time of merger. Promised observations of gravitational waves and high energy
+neutrinos, together with complementary electromagnetic waves, herald a new era of multimessenger or transpectral astronomy.}
+
+With promised observations from gravitational wave (GW) and high
+energy neutrino detectors in the next decade, an unprecedented era of transpectral or multimessenger
+astronomy is nearing upon us. In order to
+maximise their full scientific potential, accurate sky
+localisation of gravitational wave events are necessary for the
+follow up studies using
+traditional electromagnetic (EM) telescopes. Inspiralling and merging
+compact binaries (binary systems involving neutron stars (NSs) and/or
+stellar mass black holes(BHs)) are
+amongst the most numerous sources for future gravitational wave
+detectors. A subset of such systems, NS-NS and NS-BH (stellar mass) binaries, are considered to be the most likely progenitor model for
+the majority of short hard burst (henceforth, denoted SHB) observations. Joint GW and EM
+observations will undisputedly give us complementary information about
+the nature and underlying physics of the central engine and outflows of such bursts.
+
+Our work is founded on the methodology and techniques developed in previous work
+by the authors of NHHDS09 and NHHDS10.  NHHDS09 and NHHDS10 consider standard sirens, the GW counterpart to traditional
+standard candles, using networks comprising advanced ground-based GW
+detectors. NHHDS09 assumes that an SHB observation either has been known
+earlier or is coincident to that of a GW measurement of an inspiralling
+NS-NS or NS-BH binary. In this instance, the SHB observation aids the GW
+measurement three ways by indicating: (i) a merger time for the
+system, (ii) the sky localisation and thus, reducing the
+dimensionality of the source parameter space, and (iii) the
+redshift, the critical quantity when mapping out the luminosity distance-redshift relationship.
+
+In contrast, this work examines how the use of {\sl only} GW
+measurements of such sources provides their sky localisation, thereby contributing to
+any proposed observation strategy of their EM counterparts. This is of
+particular interest to future GRB satellites, and current and upcoming large-scale optical surveys with high sensitivity,
+rapid cadence, and large sky-area coverage. Several recent works have
+explored sky localisation errors in the context of burst (unmodelled waveform) sources
+for advanced GW detector networks, relying on analytically derived
+timing formulae. This is the first work that {\sl explicitly} computes
+sky localisation measurement errors for non-spinning NS-NS and NS-BH populations using Markov Chain Monte Carlo
+(MCMC) techniques for advanced GW detector networks. In the context of
+initial Ligo detectors and the LSC, works such as Van der Sluys {\sl
+  et al.}, are instrumental in addressing such concerns using MCMC
+techniques for spin-precessing NS-BH systems. \samaya{Most signals for
+  Ligo are detected at threshold, therefore necessitating MCMC or
+  similar Bayesian approach. We will only look at NS-NS systems here,
+  results for NS-BH are similar in the main features, only difference
+  is with detectable volume.}
+
+
+
+\section{GWs from Inspiralling Compact Binaries}
+
+
+Gravitational waveforms rely on successfully modelling the local
+dynamics of the source and the subsequent gravitational wave emission
+detectable by an observer at infinity. In general, waveforms for
+GW driven compact binaries
+comprise three phases: the so-called `inspiral', `merger' and
+`ringdown'. \samaya{Cut the below}. Post-Newtonian (PN) techniques (an expansion in gravitational
+potential $M/r$, or equivalently for bound systems, orbital speed
+$v^2$) provide an extremely accurate description of the gradual
+adiabatic {\it inspiral}, when each compact body slowly spirals together due
+to the radiative loss of orbital energy and angular momentum through
+gravitational waves. Eventually, the two bodies become sufficiently
+close that the weak field perturbative PN expansion is no
+longer valid. Modelling this brief {\sl merger} phase requires numerical
+simulations that directly solve the full Einstein
+field equations. Finally, the system experiences the {\sl ringdown}
+phase, where it settles down
+to a weakly perturbed, single black hole. 
+
+In this work, we use only the inspiral portion of the waveform where
+the majority of the SNR for NS-NS and NS-BH binaries are
+accumulated in the band of
+advanced detectors (for instance, NS-NS binaries will
+radiate approximately $10^4$ cycles in the band of advanced LIGO, and NS-BH
+binaries $10^3$ cycles). In particular, we apply the non-spinning restricted 2PN
+waveform in the frequency domain, such that the two gravitational wave
+polarisations are:
+\begin{eqnarray}
+\tilde{h}_+(f) &=& \sqrt{\frac{5}{96}}\frac{\pi^{-2/3} {\mathcal
+M}_z^{5/6}}{D_L}{\cal A}_+ f^{-7/6} e^{i\Psi(f)} \, ,
+\label{eq:freqdomainhp}
+\\
+\tilde{h}_\times(f) &=& \sqrt{\frac{5}{96}}\frac{\pi^{-2/3} {\mathcal
+M}_z^{5/6}}{D_L}{\cal A}_\times f^{-7/6} e^{i\Psi(f) - i\pi/2} \, ,
+\label{eq:freqdomainhc}
+\end{eqnarray}
+where $ {\mathcal
+M}_z = (1+z) m_1^{3/5} m_2^{3/5}/(m_1 + m_2)^{1/5}$ is the redshifted chirp mass of the system for two masses $m_1$ and $m_2$, $f$ is the GW frequency which evolves with a characteristic chirp given by Eq. (10) in NHHDS09 and $D_L$ is the luminosity
+distance to the binary. The functions ${\cal A}_{+,\times}$ depend on the binary's orientation (Eqs. (7) and (8) in NHHDS09). The phase function $\Psi(f)$ in Eqs.\
+(\ref{eq:freqdomainhp}) and (\ref{eq:freqdomainhc}) is given at 2PN order by Eq. (14) in NHHDS09 and is a function of ${\mathcal
+M}_z$, the redshifted reduced mass $\mu_z$, the parameters $t_c$ and $\Phi_c$, the time and orbital phase when the frequency $f$ diverges in the PN approximation.  
+We use units with $G = 1 = c$; conversion factors are $M_\odot
+\equiv GM_\odot/c^2 = 1.47\,{\rm km}$, and $M_\odot \equiv
+GM_\odot/c^3 = 4.92 \times 10^{-6}\,{\rm seconds}$. 
+
+The predicted inspiral waveform encodes source parameters such as the binary's
+sky position,  luminosity distance, its `redshifted' masses, its
+orientation in the sky, the time of merger and other parameters
+intrinsic to the source. Critically, the inspiral does not contain any information regarding the source's redshift.  
+
+\samaya{Sentence on timing which is main effect.}  
+\section{Methodology}
+\samaya{Standard stuff: Basic review of parameter estimation, MCMC methods, Priors, Selection of Binaries}
+
+This section summarises the methodology used and detailed in NHHDS10. For conciseness, we refer the reader to Sections 3 and 4 of NHHDS09.  
+
+When estimating source parameters, the central quantity of interest is the posterior probability
+density function:
+\begin{equation}
+\label{eq:postPDF}
+p({\boldsymbol \theta} \, | \, {\bf s}) = {\cal N} \, p^{(0)}
+({\boldsymbol{\theta}}) {\cal L}_{\rm TOT} ({\bf s} \, |
+\,{\boldsymbol{\theta}}) \,, 
+\end{equation}
+where ${\boldsymbol{\theta}} = \{ {\cal M}_z, \mu_z, D_L, t_c, \cos \theta, \phi, \cos \iota, \psi,
+\Phi_c \}$ is the vector set of parameters. As is the standard practice,
+we assume here that a GW has been detected. In Eq.\
+(\ref{eq:postPDF}), ${\cal N}$ denotes a normalization constant,
+$p^{(0)}({\boldsymbol{\theta}})$ is the PDF that represents the prior
+probability that a measured GW is described by the parameters
+$\boldsymbol{\theta}$, and ${\cal L}_{\rm TOT} (\bf{s} \, | \,
+{\boldsymbol \theta} )$ is the total {\it likelihood function} (e.g.,
+\citealt{mackay03}).  The likelihood function measures the relative
+conditional probability of observing a particular set of data $\bf{s}$
+given a measured signal ${\bf h}$ depending on some unknown set
+of parameters, $\boldsymbol{\theta}$ and an instant of noise, ${\bf n}$.  Because we
+assume that the noise is independent and uncorrelated at each detector
+site, the total likelihood function is the product of
+the individual likelihood at each detector:
+\begin{equation}
+\label{eq:totLike}
+{\cal L}_{\rm TOT} ({\bf s} \, | \,{\boldsymbol \theta}) = \Pi_{a}
+{\cal L}_a (s_a \, | \,{\boldsymbol \theta})\;,
+\end{equation}
+where ${\cal L}_a$, the likelihood computed at detector $a$, is given
+by \citep{finn92}
+\begin{equation}
+\label{eq:Like}
+{\cal L}_a \, (s \, | \,{\boldsymbol \theta}) = \, e^{ -
+\big( h_a({\boldsymbol \theta}) - s_a \, \big| \, h_a({\boldsymbol
+\theta}) - s_a \big)/2 } \, .
+\end{equation}
+The inner product $\left( \ldots | \ldots \right)$ on the vector space
+of signals is defined as
+\begin{equation}
+(g|h) = 2 \int_0^{\infty} df \frac{\tilde{g}^*(f)\tilde{h}(f) +
+\tilde{g}(f)\tilde{h}^*(f)}{S_n(f)} \, .
+\label{eq:innerproduct}
+\end{equation}
+where $S_n(f)$ is the one-sided power density spectrum.
+
+For completeness, we now provide some important definitions. The {\it true}\/ SNR at detector $a$, associated with a given instance of
+noise for a measurement at a particular detector, is defined as:
+\begin{eqnarray}
+\left({S\over N}\right)_{a, {\rm true}} & = & { \left( h_a \, |
+\, s_a \right) \over \sqrt{ \left( h_a \, | \, h_a\right) } }\;.
+\label{eq:snr_true}
+\end{eqnarray}
+For an ensemble of detector noise realisations $n_a$, the {\it
+average} SNR at detector $a$ is given by
+\begin{equation}
+\label{eq:snr_ave}
+\left({S\over N}\right)_{a, {\rm ave}} = {{(h_a | h_a)}\over
+{ {\rm rms}\ (h_a|n_a)}} = (h_a|h_a)^{1/2}.
+\end{equation}
+Subsequently, the {\it average} SNR of a coherent network of detectors
+is:
+\begin{eqnarray}
+\left({S\over N}\right)_{{\rm ave}} & = & \sqrt{\sum_a \left({S\over
+N}\right)^2_{a, {\rm ave}}}\ \ .
+\label{eq:snr_tot_ave}
+\end{eqnarray}
+
+As detailed in Section 3.3 of NHHDS09, we use Markov Chain Monte Carlo (MCMC) methods to explore
+the full posterior PDF, given by Eq.\ (\ref{eq:postPDF}). The MCMC algorithm used is based on a generic version of
+CosmoMC, described in \cite{lewis02}.\footnote{See http://cosmologist.info/cosmomc/}
+The choice of priors is important in our MCMC approach, especially for
+signals detected at the threshold SNR.  We take the prior
+distributions in chirp mass ${\cal M}_z$, reduced mass $\mu_z$,
+polarization angle $\psi$, coalescence time $t_c$, luminosity distance
+$D_L$, and coalescence
+phase $\Phi_c$ to be {\it flat} over the region of sample space where
+the binary is detectable at a SNR = 3.5. For our sample with isotropic inclination
+distribution, we use $p^{(0)}(\cos \iota) = {\rm constant}$ over the
+range $[-1,1]$. 
+
+As our previous work indicates, how we select our binaries is central
+to the derivation of representative sky localisation statistics for binary
+populations. We simulate a million binaries out to a $z = 1$,
+assuming a constant comoving volume density  (\citealt{peebles93},
+\citealt{hogg99}) in a $\Lambda$CDM Universe with
+$H_0=70.5\ \mbox{km}/\mbox{sec}/\mbox{Mpc}$, $\Omega_{\Lambda}=0.726$,
+and $\Omega_{m}=0.2732$ \citep{komatsu09} with random sky positions and orientations. We
+consider three cases where each binary in the total population is selected: (i). by triggering on
+the {\sl average} total network SNR threshold of 8.5 (see figure \ref{fig:detected_binaries_caseI}), (ii). by requiring that both Ligo
+Hanford and Ligo Livingston each has an {\sl average} SNR of 6 or
+higher and an {\sl average} total network SNR threshold above 12 (see figure \ref{fig:detected_binaries_caseII}). Case I uses a similar detection
+criteria as {\sl network} thresholding criteria developed in
+NHHDS09 and NHHDS10. However, the value of our network detection
+threshold used here is
+$8.5$, which is in contrast to the value of $7.5$, used in NHHDS09 and NHHDS10.
+The earlier works assume that an EM counterpart has been observed {\sl
+  prior} or {\sl coincident} with the GW measurement, significantly
+reducing the number of templates to be searched over, and hence,
+lowering the detection threshold.
+
+\begin{figure}[t]
+\centering 
+\includegraphics[width=0.9\columnwidth]{Net8.5.eps}
+\caption{Detected NS-NS binaries for our various detector networks as
+a function of sky position $(\cos\theta,\phi)$ using an average
+network threshold SNR of 8.5.  The lower right panel
+shows the binaries detected by a five-detector network (both LIGO
+sites, Virgo, AIGO, and LCGT).  We find that LIGO plus Virgo only detects $762$ events;
+LIGO, Virgo, and AIGO detect $1142$ events; LIGO, Virgo,
+and LCGT, detect $1076$ events; and  LIGO, Virgo, AIGO
+and LCGT, detect $1500$ events.  Detections are more
+uniformly distributed on the sky in networks that include LCGT; AIGO
+improves coverage in two of the sky's quadrants.  Our coordinate
+$\phi$ is related to right ascension $\alpha$ by $\phi=\alpha-$GMST,
+where GMST is Greenwich Mean Sidereal Time; $\theta$ is related to
+declination $\delta$ by $\theta = \pi/2 - \delta$.}
+\label{fig:detected_binaries_caseI}
+\end{figure} 
+
+\begin{figure}[t]
+\centering 
+\includegraphics[width=0.9\columnwidth]{Ligo6Net12.eps}
+\caption{Detected NS-NS binaries for our various detector networks as
+a function of sky position $(\cos\theta,\phi)$ in the Case II
+detection threshold scenario. Here, we require both that each LIGO detector
+detects the event with a SNR of at least 6, and that the {\sl average}
+network threshold is at least 12. We find that LIGO plus Virgo only detects $208$ events;
+LIGO, Virgo, and AIGO detect $275$ events; LIGO, Virgo,
+and LCGT, detect $240$ events; and  LIGO, Virgo, AIGO
+and LCGT, detect $293$ events.  }
+\label{fig:detected_binaries_caseII}
+\end{figure}
+
+\section{Results}
+
+This section presents our results.  
+
+\subsection{Individual Binaries}
+
+
+
+\begin{figure}[t]
+\centering 
+\includegraphics[width=0.98\columnwidth]{highSNR.eps}
+\includegraphics[width=0.98\columnwidth]{binary2.eps}
+\includegraphics[width=0.98\columnwidth]{binary3.eps}
+\includegraphics[width=0.98\columnwidth]{binary4.eps}
+\caption{PLOTS NEED TO BE REDONE: Sky error
+  ellipses for four binaries under different network
+  configurations. The origin (0,0) of each plot represents the
+  source's true positions.}
+\label{fig:highSNRellipse}
+\end{figure} 
+
+\subsection{Case I: Triggering on a network of detectors}
+\samaya{How well do various plausible networks determine the sky
+  localisation to different binaries? With or without knowledge of the
+time of merger?}
+
+\begin{figure}[h!]
+\centering 
+\resizebox{\hsize}{!}{\includegraphics[angle=90,,width=0.95\textwidth]{normalized_cumulative_distributions_1sigma.eps}}
+\resizebox{\hsize}{!}{\includegraphics[angle=90,,width=0.95\textwidth]{normalized_cumulative_distributions_2sigma.eps}}
+\resizebox{\hsize}{!}{\includegraphics[angle=90,,width=0.95\textwidth]{normalized_cumulative_distributions_3sigma.eps}}
+%\includegraphics[width=0.98\columnwidth]{normalized_cumulative_distributions_1sigma.eps}
+\caption{Normalized cumulative distributions for a sample of
+  binaries (29 binaries randomly selected from the total detected
+  sample) in Case I detection scenario. Black line denotes
+  Ligo+Virgo+Aigo+LCGT network, green line represents Ligo+Virgo+Aigo,
+  red line is Ligo+Virgo+LCGT, blue line indicates Ligo+Virgo only.  
+}
+\label{fig:Normcd}
+\end{figure} 
+
+\begin{figure}[h!]
+\centering 
+\resizebox{\hsize}{!}{\includegraphics[angle=90,,width=0.95\textwidth]{cumulative_distributions_1sigma.eps}}
+\resizebox{\hsize}{!}{\includegraphics[angle=90,,width=0.95\textwidth]{cumulative_distributions_2sigma.eps}}
+\resizebox{\hsize}{!}{\includegraphics[angle=90,,width=0.95\textwidth]{cumulative_distributions_3sigma.eps}}
+%\includegraphics[width=0.98\columnwidth]{normalized_cumulative_distributions_1sigma.eps}
+\caption{Cumulative distributions for a sample of
+  binaries (29 binaries randomly selected from the total detected
+  sample) in Case I detection scenario. Black line denotes
+  Ligo+Virgo+Aigo+LCGT network, green line represents Ligo+Virgo+Aigo,
+  red line is Ligo+Virgo+LCGT, blue line indicates Ligo+Virgo only.  }
+\label{fig:cd}
+\end{figure} 
+
+
+
+\subsection{Case II: Triggering on single detectors}
+
+
+
+
+
+
+
+
+\section{Acknowledgements}
+Sathya, Sterl, Curt Cutler, Michele Vallisneri, Derek Fox, Shinichiro
+Ando, Kip Thorne, Alan Weinstein, Mansi Kaliswal, Eran Ofek, JM Desert,
+CITA Sunnyvale cluster.
+
+
+
+\bibliography{sirens}
+\end{document}
